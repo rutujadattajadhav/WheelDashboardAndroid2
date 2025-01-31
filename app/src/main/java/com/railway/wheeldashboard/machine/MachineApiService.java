@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface MachineApiService {
 
-    @GET("api/machines/getAllMachine")
+    @GET("wheelinspection/api/machines/getAllMachine")
     Call<List<Machine>> getAllMachines();
 
     @GET("api/machines/{id}")

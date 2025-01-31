@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">wheel dashboard</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="login">Login</string>
+    <string name="signup">SignUp</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="wheel_poh_details">WheelPohDetails</string>
+    <string name="bearing_rejection_anyalsis">Bearing Rejection Analysis</string>
+    <string name="wheel_profile_turning">Wheel Profile Turning</string>
+    <string name="wheel_assembly">Wheel Assembly</string>
+    <string name="incoming_wheel_sheet_analysis">Incoming WheelSheet Analysis</string>
+
+    <string name="wheel_logo">Wheel Logo</string>
+    <string name="railway_logo">Railway Logo</string>
+    <string name="home_footer">1. Till date online Failure is Nil\n2. A unique numbering system has been introduced for easy traceability of wheels.\n3. Detail Record of Wheelset maintained in hard &amp; Soft Copy for POH Record\n4. 100% In-house POH of Wheelset started.</string>
+    <string name="machine_plant">LIST OF MACHINE &amp; PLANT OF WHEEL SHOP</string>
+    <string name="breakdown_history">BreakDown History</string>
+    <string name="dashboard">Dashboard</string>
+
+</resources>

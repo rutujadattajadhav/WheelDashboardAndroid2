@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Make Options -->
+    <string-array name="make_options">
+        <item>FAG</item>
+        <item>NBC</item>
+    </string-array>
+
+    <!-- Life Options -->
+    <string-array name="life_options">
+        <item>1 Year</item>
+        <item>2 Years</item>
+        <item>3 Years</item>
+        <item>4 Years</item>
+        <item>5 Years</item>
+    </string-array>
+
+    <!-- MFG Options -->
+    <string-array name="mfg_options">
+        <item>MFG001</item>
+        <item>MFG002</item>
+        <item>MFG003</item>
+        <item>MFG004</item>
+        <item>MFG005</item>
+    </string-array>
+
+    <string-array name="received_from_options">
+        <item>Workshop A</item>
+        <item>Workshop B</item>
+        <item>Workshop C</item>
+    </string-array>
+
+    <string-array name="wheel_set_no_options">
+        <item>Set 1</item>
+        <item>Set 2</item>
+        <item>Set 3</item>
+    </string-array>
+
+    <string-array name="date_range_options">
+        <item>Last Week</item>
+        <item>Last Month</item>
+        <item>Last Year</item>
+    </string-array>
+</resources>

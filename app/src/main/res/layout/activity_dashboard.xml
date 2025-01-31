@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FDF6E3"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Top Metrics -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TOTAL WHEEL POH\n9,021"
+                android:gravity="center"
+                android:padding="8dp"
+                android:background="#FFA500"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_margin="4dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PROFILE TURNING\n8,311"
+                android:gravity="center"
+                android:padding="8dp"
+                android:background="#FFA500"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_margin="4dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="WHEEL ASSEMBLY\n1,411"
+                android:gravity="center"
+                android:padding="8dp"
+                android:background="#FFA500"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_margin="4dp" />
+        </LinearLayout>
+
+        <!-- Year-Wise Overhauling Performance -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Year-Wise Overhauling Performance"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/year_bar_chart"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Type of Repair -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type of Repair"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/repair_pie_chart"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Type of Wheel -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type of Wheel"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/type_of_wheel_chart"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Wheel Assembly Year-Wise -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wheel Assembly Year-Wise"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/wheel_assembly_chart"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Footer Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_footer"
+            android:background="#228B22"
+            android:textColor="#FFFFFF"
+            android:padding="8dp"
+            android:layout_marginTop="16dp"
+            android:textSize="14sp" />
+    </LinearLayout>
+</ScrollView>

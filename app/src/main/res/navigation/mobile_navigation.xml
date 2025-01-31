@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.railway.wheeldashboard.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <activity
+        android:id="@+id/dashboard"
+        android:name="com.railway.wheeldashboard.DashboardActivity"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/activity_dashboard"/>
+
+    <activity
+        android:id="@+id/wheelpohdetails"
+        android:name="com.railway.wheeldashboard.WheelPohDetailsActivity"
+        android:label="@string/wheel_poh_details"
+        tools:layout="@layout/activity_wheel_poh"/>
+
+    <activity
+        android:id="@+id/bearingRejectionanylysis"
+        android:name="com.railway.wheeldashboard.BearingRejectionActivity"
+        android:label="@string/bearing_rejection_anyalsis"
+        tools:layout="@layout/activity_bearing_rejection"/>
+
+    <activity
+        android:id="@+id/wheelprofileturning"
+        android:name="com.railway.wheeldashboard.WheelTurningActivity"
+        android:label="@string/wheel_profile_turning"
+        tools:layout="@layout/activity_wheel_turning"/>
+
+    <activity
+        android:id="@+id/wheelAssembly"
+        android:name="com.railway.wheeldashboard.WheelAssemblyActivity"
+        android:label="@string/wheel_assembly"
+        tools:layout="@layout/activity_wheel_assembly"/>
+
+    <activity
+        android:id="@+id/incomingwheelsheetanyalysis"
+        android:name="com.railway.wheeldashboard.IncomingWheelsetActivity"
+        android:label="@string/incoming_wheel_sheet_analysis"
+        tools:layout="@layout/activity_incoming_wheelset"/>
+
+    <activity
+        android:id="@+id/machineplant"
+        android:name="com.railway.wheeldashboard.MachinePlantActivity"
+        android:label="@string/machine_plant"
+        tools:layout="@layout/activity_machine_plant"/>
+
+    <activity
+        android:id="@+id/breakdownhistory"
+        android:name="com.railway.wheeldashboard.BreakdownHistoryActivity"
+        android:label="@string/breakdown_history"
+        tools:layout="@layout/activity_breakdown_history"/>
+
+
+    <activity
+        android:id="@+id/login"
+        android:name="com.railway.wheeldashboard.LoginActivity"
+        android:label="@string/login"
+        tools:layout="@layout/activity_login"/>
+
+    <activity
+        android:id="@+id/signup"
+        android:name="com.railway.wheeldashboard.SignupActivity"
+        android:label="@string/signup"
+        tools:layout="@layout/activity_signup"/>
+
+
+</navigation>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/dashboard"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/dashboard" />
+
+        <item
+            android:id="@+id/wheelpohdetails"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/wheel_poh_details" />
+
+        <item
+            android:id="@+id/bearingRejectionanylysis"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/bearing_rejection_anyalsis" />
+
+        <item
+            android:id="@+id/wheelprofileturning"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/wheel_profile_turning" />
+
+        <item
+            android:id="@+id/wheelAssembly"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/wheel_assembly" />
+
+
+        <item
+            android:id="@+id/incomingwheelsheetanyalysis"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/incoming_wheel_sheet_analysis" />
+
+        <item
+            android:id="@+id/machineplant"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/machine_plant" />
+
+        <item
+            android:id="@+id/breakdownhistory"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/breakdown_history" />
+
+
+
+    </group>
+</menu>

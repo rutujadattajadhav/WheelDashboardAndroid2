@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E0E0F8"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Profile Turning Summary -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WHEEL TURNING PROFILE DETAILS"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            android:textColor="#E91E63" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PROFILE TURNING\n8,311"
+            android:gravity="center"
+            android:padding="8dp"
+            android:background="#FFA500"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Pie Charts -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/wheel_turning_cut_chart"
+                android:layout_width="0dp"
+                android:layout_height="400dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/worn_wheel_profile_chart"
+                android:layout_width="0dp"
+                android:layout_height="400dp"
+                android:layout_weight="1"
+                android:layout_margin="8dp" />
+        </LinearLayout>
+
+        <!-- Dropdown -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <Spinner
+                android:id="@+id/received_from_dropdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/received_from_options"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <!-- Placeholder for Data Configuration -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="INCOMING WHEEL DIA DIFFERENT ON SAME AXLE"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="400dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="#F5F5F5"
+                android:text="Data Set Configuration Error\nLooker Studio cannot connect to your data set."
+                android:textColor="#757575"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="400dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="#F5F5F5"
+                android:text="Data Set Configuration Error\nLooker Studio cannot connect to your data set."
+                android:textColor="#757575"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

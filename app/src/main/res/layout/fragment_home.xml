@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_home"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Top Section: Two Images -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="147dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/wheel_logo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="@string/wheel_logo"
+                android:src="@drawable/wheelshoplogo" />
+
+            <LinearLayout
+                android:layout_width="147dp"
+                android:layout_height="106dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <!-- Title Section -->
+
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="WEEL COME"
+                    android:textColor="@color/black_home"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="98dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Sanpada Workshop, Central Railway"
+                    android:textColor="@color/black_home"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/railway_logo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="16dp"
+                android:contentDescription="@string/railway_logo"
+                android:src="@drawable/railwaylogo" />
+        </LinearLayout>
+
+
+        <!-- Welcome Message -->
+        <TextView
+            android:id="@+id/welcome_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to the Centralized Website and Unified Database for Wheelshop SANPADA POH."
+            android:textColor="@color/black_home"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:textAlignment="center" />
+
+        <!-- Content Section -->
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Our platform offers a comprehensive collection of essential Wheelshop-related documents such as letters, circulars, drawings, specifications, general instructions, inspection notes, material positions, warranty and rejection records, and daily performance reports."
+            android:textColor="@color/black_home"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/key_features_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Here are the key features of our website:"
+            android:textColor="@color/black_home"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold" />
+
+        <!-- Key Features -->
+        <TextView
+            android:id="@+id/key_features"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Structured Data: The site utilizes a Google Sheets format with built-in filters. This design allows viewers to easily search or sort letters based on criteria such as issuing authority, letter number, date of issue, subject, and content.\n\n• Document Management: While many documents have already been uploaded, continuous updates are necessary. We will promptly add new documents as they are issued.\n\n• Access Control: Document access is strictly limited to Officers and Engineers associated with the Wheel shop."
+            android:textColor="@color/black_home"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Contact Section -->
+        <TextView
+            android:id="@+id/contact_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="For suggestions or feedback regarding the website, please contact us at ssesheelshopsnpd@gmail.com."
+            android:textColor="@color/black_home"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:textAlignment="center" />
+    </LinearLayout>
+</ScrollView>

@@ -2,6 +2,8 @@ package com.railway.wheeldashboard;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -13,44 +15,64 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.railway.wheeldashboard.client.RetrofitClientInstance;
+import com.railway.wheeldashboard.login.LoginService;
+import com.railway.wheeldashboard.wheelPohDetail.WheelPoh;
+import com.railway.wheeldashboard.wheelPohDetail.WheelPohApiService;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class WheelPohDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wheel_poh);
+        getAllWheelPohDetails();
 
-        setupTable();
         setupTypeOfWheelChart();
         setupTypeOfBearingChart();
     }
 
-    private void setupTable() {
+
+    private void getAllWheelPohDetails() {
+        WheelPohApiService wheelPohService = RetrofitClientInstance.getRetrofitInstance().create(WheelPohApiService.class);
+        wheelPohService.getAllWheelPohDetails().enqueue(new Callback<List<WheelPoh>>() {
+            @Override
+            public void onResponse(Call<List<WheelPoh>> call, Response<List<WheelPoh>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<WheelPoh> wheelPohList = response.body();
+                    Log.d("successfully fetched","Successfully fetched");
+                    setupTable(wheelPohList);
+                } else {
+                    Log.e("API_ERROR", "Error Code: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<WheelPoh>> call, Throwable t) {
+                Log.e("API_FAILURE", "Error: " + t.getMessage());
+            }
+        });
+    }
+
+
+
+    private void setupTable(List<WheelPoh> wheelPohList) {
         TableLayout tableLayout = findViewById(R.id.tableLayout);
+
+        // Clear any existing rows to avoid duplication
+        tableLayout.removeAllViews();
 
         // Define all table headers
         String[] headers = {
-                "DATE", "WHEEL NO", "WHEEL TYPE", "TREAD DIA", "FLANGE", "JOURNAL DIA A",
-                "SNPD BEARING", "BEARING MAKE", "SHRINKING", "JOURNAL DIA B", "UST"
-        };
-
-        // Define table data
-        String[][] data = {
-                {"Jan 22, 2025", "SU0562", "AC/DC (SIEMENS FORGE)", "953", "29.4", "140.85", "SNA-13710", "FAG", "0.055", "140.05", "PVF"},
-                {"Jan 22, 2025", "SU0566", "HCC/TLR (FORGE)", "954", "26.0", "140.55", "SNA-813", "FAG", "0.065", "140.45", "CIS"},
-                {"Jan 22, 2025", "SU0462", "HCC/TLR (CAST)", "926", "27.0", "140.45", "SNA-4070", "NBC", "0.055", "140.55", "CIS"},
-                {"Jan 22, 2025", "SU0015", "AC/DC (BMW CAST)", "912", "26.0", "140.35", "SNA-1405", "NBC", "0.065", "140.25", "GMM"},
-                {"Jan 21, 2025", "SU0048", "HCC/TLR (FORGE)", "954", "26.0", "140.55", "SNA-170", "FAG", "0.065", "140.45", "CIS"},
-                {"Jan 21, 2025", "SU0048", "HCC/TLR (CAST)", "926", "27.0", "140.45", "SNA-813", "FAG", "0.055", "140.55", "CIS"},
-                {"Jan 21, 2025", "SU0567", "AC/DC (BMW CAST)", "912", "26.0", "140.35", "SNA-1405", "NBC", "0.065", "140.25", "GMM"},
-                {"Jan 21, 2025", "SU0014", "AC/DC (SIEMENS FORGE)", "953", "29.4", "140.85", "SNA-13710", "FAG", "0.055", "140.05", "PVF"},
-                {"Jan 21, 2025", "SU0045", "AC/DC (SIEMENS FORGE)", "920", "28.5", "140.90", "SNA-1221", "NBC", "0.055", "140.15", "CIS"},
-                {"Jan 21, 2025", "SU0021", "HCC/TLR (FORGE)", "940", "27.5", "140.50", "SNA-1175", "FAG", "0.065", "140.55", "PVF"},
-                {"Jan 20, 2025", "SU0089", "HCC/TLR (CAST)", "930", "25.0", "140.60", "SNA-4113", "NBC", "0.055", "140.35", "GMM"},
-                {"Jan 20, 2025", "SU0154", "AC/DC (BMW CAST)", "945", "26.5", "140.75", "SNA-3112", "FAG", "0.065", "140.65", "CIS"}
+                "Id", "DATE", "WHEEL NO", "WHEEL TYPE", "TREAD DIA", "FLANGE", "JOURNAL DIA A",
+                "SNPD BEARING A", "BEARING MAKE", "SHRINKING A", "SNPD BEARING B",
+                "SHRINKING B", "BEARING", "JOURNAL DIA B", "UST"
         };
 
         // Add headers to the table
@@ -60,22 +82,46 @@ public class WheelPohDetailsActivity extends AppCompatActivity {
             textView.setText(header);
             textView.setPadding(8, 8, 8, 8);
             textView.setTypeface(Typeface.DEFAULT_BOLD);
+            textView.setGravity(Gravity.CENTER);
             headerRow.addView(textView);
         }
         tableLayout.addView(headerRow);
 
         // Add rows to the table
-        for (String[] row : data) {
+        for (WheelPoh row : wheelPohList) {
             TableRow tableRow = new TableRow(this);
-            for (String cell : row) {
-                TextView textView = new TextView(this);
-                textView.setText(cell);
-                textView.setPadding(8, 8, 8, 8);
-                tableRow.addView(textView);
-            }
+
+            // Add each column data to the row
+            addTextViewToRow(tableRow, row.getId() != null ? row.getId().toString() : "N/A");
+            addTextViewToRow(tableRow, row.getDate());
+            addTextViewToRow(tableRow, row.getWheelNo());
+            addTextViewToRow(tableRow, row.getWheelType());
+            addTextViewToRow(tableRow, row.getTreadDia() != null ? row.getTreadDia().toString() : "N/A");
+            addTextViewToRow(tableRow, row.getFlange() != null ? row.getFlange().toString() : "N/A");
+            addTextViewToRow(tableRow, row.getJournalDiaA() != null ? row.getJournalDiaA().toString() : "N/A");
+            addTextViewToRow(tableRow, row.getSnpdBearingA());
+            addTextViewToRow(tableRow, row.getBearingMake());
+            addTextViewToRow(tableRow, row.getShrinkingA() != null ? row.getShrinkingA().toString() : "N/A");
+            addTextViewToRow(tableRow, row.getSnpdBearingB());
+            addTextViewToRow(tableRow, row.getShrinkingB() != null ? row.getShrinkingB().toString() : "N/A");
+            addTextViewToRow(tableRow, row.getBearing());
+            addTextViewToRow(tableRow, row.getJournalDiaB() != null ? row.getJournalDiaB().toString() : "N/A");
+            addTextViewToRow(tableRow, row.getUst());
+
+            // Add the row to the table
             tableLayout.addView(tableRow);
         }
     }
+
+    // Helper method to add TextView to a TableRow
+    private void addTextViewToRow(TableRow tableRow, String text) {
+        TextView textView = new TextView(this);
+        textView.setText(text != null ? text : "N/A");
+        textView.setPadding(8, 8, 8, 8);
+        textView.setGravity(Gravity.CENTER);
+        tableRow.addView(textView);
+    }
+
 
     private void setupTypeOfWheelChart() {
         PieChart pieChart = findViewById(R.id.type_of_wheel_chart);

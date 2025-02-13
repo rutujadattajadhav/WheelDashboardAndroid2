@@ -1,0 +1,13 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+            <TextView android:text="ID" style="@style/TableHeader" android:id="@+id/machineid"/>
+            <TextView android:text="Plant No" style="@style/TableHeader" android:id="@+id/tv_plantNo"/>
+            <TextView android:text="Description" style="@style/TableHeader" android:id="@+id/tv_description"/>
+            <TextView android:text="Make" style="@style/TableHeader" android:id="@+id/tv_make"/>
+            <TextView android:text="Acquisition Date" style="@style/TableHeader" android:id="@+id/tv_acquisitionDate"/>
+            <TextView android:text="Capacity" style="@style/TableHeader" android:id="@+id/tv_capacity"/>
+
+</LinearLayout>

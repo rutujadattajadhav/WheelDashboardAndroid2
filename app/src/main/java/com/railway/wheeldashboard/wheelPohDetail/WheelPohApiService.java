@@ -21,4 +21,9 @@ public interface WheelPohApiService {
 
     @DELETE("api/wheel-poh-details/{id}")
     Call<Void> deleteWheelPohDetail(@Path("id") Long id);
+
+    @GET("wheelinspection/api/wheel-poh")
+    Call<TableResponse> getTableData(@Query("page") int page,
+                                @Query("size") int size,
+                                @Query("search") String search);
 }

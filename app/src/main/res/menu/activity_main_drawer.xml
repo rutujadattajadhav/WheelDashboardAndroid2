@@ -49,6 +49,10 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/breakdown_history" />
 
+        <item
+            android:id="@+id/axlerejection"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/axle_rejection" />
 
 
     </group>

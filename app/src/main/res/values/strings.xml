@@ -23,6 +23,7 @@
     <string name="home_footer">1. Till date online Failure is Nil\n2. A unique numbering system has been introduced for easy traceability of wheels.\n3. Detail Record of Wheelset maintained in hard &amp; Soft Copy for POH Record\n4. 100% In-house POH of Wheelset started.</string>
     <string name="machine_plant">LIST OF MACHINE &amp; PLANT OF WHEEL SHOP</string>
     <string name="breakdown_history">BreakDown History</string>
+    <string name="axle_rejection">Axle Rejection</string>
     <string name="dashboard">Dashboard</string>
 
 </resources>

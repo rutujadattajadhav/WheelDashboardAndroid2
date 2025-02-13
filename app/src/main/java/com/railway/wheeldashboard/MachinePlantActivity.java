@@ -1,23 +1,26 @@
 package com.railway.wheeldashboard;
 
-
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.widget.TableLayout;
-import android.widget.TableRow;
+import android.view.View;
+import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.railway.wheeldashboard.client.RetrofitClientInstance;
-import com.railway.wheeldashboard.login.LoginService;
 import com.railway.wheeldashboard.machine.Machine;
 import com.railway.wheeldashboard.machine.MachineApiService;
+import com.railway.wheeldashboard.machine.MachineTableAdapter;
+import com.railway.wheeldashboard.machine.TableResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,100 +28,107 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MachinePlantActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private MachineTableAdapter adapter;
+    private TextView totalPagesTextView, pageIndicator;
+    private int currentPage = 0;
+    private int totalPages = 1;
+    private String search = "";
+    private Button prevButton, nextButton;
+    private SearchView searchView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_machine_plant);
-        getAllMachines();
 
-    }
+        recyclerView = findViewById(R.id.recyclerView);
+        prevButton = findViewById(R.id.prevButton);
+        nextButton = findViewById(R.id.nextButton);
+        pageIndicator = findViewById(R.id.pageIndicator);
+        searchView = findViewById(R.id.searchView);
+        totalPagesTextView = findViewById(R.id.totalPagesTextView);
 
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-    private void getAllMachines() {
-        MachineApiService machineApiService = RetrofitClientInstance.getRetrofitInstance().create(MachineApiService.class);
-        machineApiService.getAllMachines().enqueue(new Callback<List<Machine>>() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setNestedScrollingEnabled(true);
+
+        adapter = new MachineTableAdapter(new ArrayList<>());
+        recyclerView.setAdapter(adapter);
+
+        // Load initial data
+        loadData(currentPage, search);
+
+        // Search functionality
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onResponse(Call<List<Machine>> call, Response<List<Machine>> response) {
-                if (response.isSuccessful()) {
-                    List<Machine> machines = response.body();
-                    Log.d("Successfully fetched",machines.toString());
-                    setupTable(machines);
-                } else {
-                    Log.d("Not get successfully","not get successfully");
-                }
+            public boolean onQueryTextSubmit(String query) {
+                search = query;
+                currentPage = 0; // Reset to first page on new search
+                loadData(currentPage, search);
+                return false;
             }
 
             @Override
-            public void onFailure(Call<List<Machine>> call, Throwable t) {
-                Log.d("Failure occour at the time get all machine",t.getMessage());
+            public boolean onQueryTextChange(String newText) {
+                return false; // No action needed on text change
+            }
+        });
+
+        // Next page button
+        nextButton.setOnClickListener(v -> {
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                loadData(currentPage, search);
+            } else {
+                Toast.makeText(MachinePlantActivity.this, "No more pages", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Previous page button
+        prevButton.setOnClickListener(v -> {
+            if (currentPage > 0) {
+                currentPage--;
+                loadData(currentPage, search);
+            } else {
+                Toast.makeText(MachinePlantActivity.this, "Already on first page", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void setupTable(List<Machine> machines) {
-        TableLayout tableLayout = findViewById(R.id.tableLayout);
+    private void loadData(int page, String search) {
+        MachineApiService apiService = RetrofitClientInstance.getRetrofitInstance().create(MachineApiService.class);
+        apiService.getTableData(page, 10, search).enqueue(new Callback<TableResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<TableResponse> call, @NonNull Response<TableResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    TableResponse tableResponse = response.body();
+                    List<Machine> items = tableResponse.getContent();
+                    totalPages = tableResponse.getTotalPages() > 0 ? tableResponse.getTotalPages() : 1;
+                    totalPagesTextView.setText("Total Pages: " + totalPages);
 
-        // Clear previous rows if any
-        tableLayout.removeAllViews();
+                    Log.d("API Response", "Data: " + new Gson().toJson(items));
 
-        // Define table headers
-        String[] headers = {
-                "Plant No.", "Description of Machine", "Make",
-                "Date of acquisition/installation", "Capacity"
-        };
+                    if (items != null && !items.isEmpty()) {
+                        adapter.updateData(items);
+                    } else {
+                        Toast.makeText(MachinePlantActivity.this, "No data available", Toast.LENGTH_SHORT).show();
+                    }
+                    pageIndicator.setText("Page " + (currentPage + 1) + " of " + totalPages);
+                } else {
+                    Log.d("API Response", "Response not successful");
+                    Toast.makeText(MachinePlantActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
+                }
+            }
 
-        // Add headers
-        TableRow headerRow = new TableRow(this);
-        for (String header : headers) {
-            TextView textView = new TextView(this);
-            textView.setText(header);
-            textView.setPadding(16, 16, 16, 16);
-            textView.setTypeface(Typeface.DEFAULT_BOLD);
-            textView.setBackgroundResource(android.R.color.darker_gray);
-            textView.setTextColor(Color.WHITE);
-            textView.setGravity(Gravity.CENTER);
-            headerRow.addView(textView);
-        }
-        tableLayout.addView(headerRow);
-
-        // Add rows with data
-        for (Machine machine : machines) {
-            TableRow tableRow = new TableRow(this);
-
-            // Plant No.
-            TextView plantNoTextView = new TextView(this);
-            plantNoTextView.setText(machine.getPlantNo() != null ? machine.getPlantNo().toString() : "N/A");
-            plantNoTextView.setPadding(16, 16, 16, 16);
-            tableRow.addView(plantNoTextView);
-
-            // Description of Machine
-            TextView descriptionTextView = new TextView(this);
-            descriptionTextView.setText(machine.getDescription() != null ? machine.getDescription() : "N/A");
-            descriptionTextView.setPadding(16, 16, 16, 16);
-            tableRow.addView(descriptionTextView);
-
-            // Make
-            TextView makeTextView = new TextView(this);
-            makeTextView.setText(machine.getMake() != null ? machine.getMake() : "N/A");
-            makeTextView.setPadding(16, 16, 16, 16);
-            tableRow.addView(makeTextView);
-
-            // Date of Acquisition/Installation
-            TextView acquisitionDateTextView = new TextView(this);
-            acquisitionDateTextView.setText(machine.getAcquisitionDate() != null ? machine.getAcquisitionDate() : "N/A");
-            acquisitionDateTextView.setPadding(16, 16, 16, 16);
-            tableRow.addView(acquisitionDateTextView);
-
-            // Capacity
-            TextView capacityTextView = new TextView(this);
-            capacityTextView.setText(machine.getCapacity() != null ? machine.getCapacity() : "N/A");
-            capacityTextView.setPadding(16, 16, 16, 16);
-            tableRow.addView(capacityTextView);
-
-            // Add the row to the table layout
-            tableRow.setBackgroundResource(android.R.color.white);
-            tableLayout.addView(tableRow);
-        }
+            @Override
+            public void onFailure(@NonNull Call<TableResponse> call, @NonNull Throwable t) {
+                Log.d("API Error", "Failed to call API", t);
+                Toast.makeText(MachinePlantActivity.this, "Error fetching data", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-
 }

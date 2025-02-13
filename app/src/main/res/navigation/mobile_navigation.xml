@@ -72,5 +72,11 @@
         android:label="@string/signup"
         tools:layout="@layout/activity_signup"/>
 
+    <activity
+        android:id="@+id/axlerejection"
+        android:name="com.railway.wheeldashboard.AxleRejectionActivity"
+        android:label="@string/axle_rejection"
+        tools:layout="@layout/activity_table"/>
+
 
 </navigation>

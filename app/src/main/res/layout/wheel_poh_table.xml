@@ -1,0 +1,63 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- Horizontal Scrollable Table -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Table Layout for Header -->
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="*"
+                    android:padding="8dp">
+
+                    <!-- Table Header Row (Appears Only Once) -->
+                    <TableRow>
+                        <TextView android:id="@+id/tv_id" android:text="ID" style="@style/TableHeader"/>
+                        <TextView android:id="@+id/tv_date" android:text="Date" style="@style/TableHeader"/>
+                        <TextView android:id="@+id/tv_wheelNo" android:text="Wheel No" style="@style/TableHeader"/>
+                        <TextView android:id="@+id/tv_wheelType" android:text="Wheel Type" style="@style/TableHeader"/>
+                        <TextView android:id="@+id/tv_treadDia" android:text="Tread Dia" style="@style/TableHeader"/>
+                        <TextView android:id="@+id/tv_flange" android:text="Flange" style="@style/TableHeader"/>
+                        <TextView android:id="@+id/tv_journalDiaA" android:text="Journal Dia A" style="@style/TableHeader"/>
+                        <TextView android:id="@+id/tv_snpdBearingA" android:text="Snpd Bearing A" style="@style/TableHeader"/>
+                        <TextView android:id="@+id/tv_bearingMake" android:text="Bearing Make" style="@style/TableHeader"/>
+                        <TextView android:id="@+id/tv_shrinkingA" android:text="Shrinking A" style="@style/TableHeader"/>
+                        <TextView android:id="@+id/tv_journalDiaB" android:text="Journal Dia B" style="@style/TableHeader"/>
+                        <TextView android:id="@+id/tv_snpdBearingB" android:text="Snpd Bearing B" style="@style/TableHeader"/>
+                        <TextView android:id="@+id/tv_shrinkingB" android:text="Shrinking B" style="@style/TableHeader"/>
+                        <TextView android:id="@+id/tv_ust" android:text="UST" style="@style/TableHeader"/>
+                        <TextView android:id="@+id/tv_bearing" android:text="Bearing" style="@style/TableHeader"/>
+                    </TableRow>
+
+                </TableLayout>
+
+                <!-- Dynamic Table Data (Rows Will Be Added Here) -->
+                <TableLayout
+                    android:id="@+id/tableDataLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="*"
+                    android:padding="8dp">
+                </TableLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+</ScrollView>

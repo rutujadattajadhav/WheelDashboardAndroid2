@@ -29,6 +29,13 @@ android {
     buildFeatures {
         viewBinding true
     }
+    sourceSets {
+        main {
+            res {
+                srcDirs 'src\\main\\res', 'src\\main\\res\\layout\\axlerejection'
+            }
+        }
+    }
 }
 
 dependencies {
@@ -55,4 +62,9 @@ dependencies {
     // Kotlin Coroutines
     implementation libs.kotlinx.coroutines.android
     implementation libs.kotlinx.coroutines.core
+    //implementation libs.recyclerview.v121
+    //implementation libs.paging.runtime.v311
+   // implementation libs.kotlinx.coroutines.core.v171
+    implementation libs.lifecycle.runtime.ktx
+    //implementation libs.lifecycle.livedata.ktx.v261
 }

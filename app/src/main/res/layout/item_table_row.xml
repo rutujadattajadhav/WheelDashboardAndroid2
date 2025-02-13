@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <!-- First Column: ID, Axle No, and Year Of Mfg -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1.5"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- Row 1: ID and Year Of Mfg -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/column11"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="ID"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/column13"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Year Of Mfg"
+                android:textSize="14sp"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <!-- Row 2: Axle NO -->
+        <TextView
+            android:id="@+id/column12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Axle NO"
+            android:textSize="14sp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <!-- Second Column: Reason of Rejection -->
+    <TextView
+        android:id="@+id/column14"
+        android:layout_width="109dp"
+        android:layout_height="62dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Reason of Rejection"
+        android:textSize="14sp" />
+</LinearLayout>

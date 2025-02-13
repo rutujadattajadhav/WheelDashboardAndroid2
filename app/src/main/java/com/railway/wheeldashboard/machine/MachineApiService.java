@@ -1,5 +1,7 @@
 package com.railway.wheeldashboard.machine;
 
+
+
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -21,4 +23,10 @@ public interface MachineApiService {
 
     @DELETE("api/machines/{id}")
     Call<Void> deleteMachine(@Path("id") Long id);
+
+    @GET("/wheelinspection/api/machines")
+    Call<TableResponse> getTableData(@Query("page") int page,
+                                     @Query("size") int size,
+                                     @Query("search") String search);
+
 }

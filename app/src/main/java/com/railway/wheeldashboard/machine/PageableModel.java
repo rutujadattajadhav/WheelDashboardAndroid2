@@ -1,6 +1,6 @@
 package com.railway.wheeldashboard.machine;
 
-import com.railway.wheeldashboard.axleRejection.SortModel;
+import com.railway.wheeldashboard.common.SortModel;
 
 public class PageableModel {
     private int pageNumber;

@@ -1,4 +1,4 @@
-package com.railway.wheeldashboard.axleRejection;
+package com.railway.wheeldashboard.common;
 
 public class PageableModel {
     private int pageNumber;

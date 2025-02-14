@@ -1,4 +1,4 @@
-package com.railway.wheeldashboard.wheelPohDetail;
+package com.railway.wheeldashboard.common;
 
 public class SortModel {
     private boolean empty;

@@ -9,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> {
+public class AxleRejectionAdapter extends RecyclerView.Adapter<AxleRejectionAdapter.ViewHolder> {
     private List<AxleRejectionModel> tableData;
     private int totalPages;
 
-    public TableAdapter(List<AxleRejectionModel> tableData) {
+    public AxleRejectionAdapter(List<AxleRejectionModel> tableData) {
         this.tableData = tableData;
     }
 

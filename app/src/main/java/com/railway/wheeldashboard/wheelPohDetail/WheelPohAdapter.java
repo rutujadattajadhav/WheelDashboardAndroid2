@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import com.railway.wheeldashboard.R;
 
-public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> {
-    private List<WheelPoh> tableData;
+public class WheelPohAdapter extends RecyclerView.Adapter<WheelPohAdapter.ViewHolder> {
+    private List<WheelPohModel> tableData;
 
-    public TableAdapter(List<WheelPoh> tableData) {
+    public WheelPohAdapter(List<WheelPohModel> tableData) {
         this.tableData = tableData;
     }
 
@@ -27,7 +27,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        WheelPoh item = tableData.get(position);
+        WheelPohModel item = tableData.get(position);
 
         holder.id.setText(item.getId() != null ? String.valueOf(item.getId()) : "N/A");
         holder.date.setText(item.getDate() != null ? item.getDate() : "N/A");
@@ -51,7 +51,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
         return tableData.size();
     }
 
-    public void updateData(List<WheelPoh> newData) {
+    public void updateData(List<WheelPohModel> newData) {
         tableData.clear();
         tableData.addAll(newData);
         notifyDataSetChanged();

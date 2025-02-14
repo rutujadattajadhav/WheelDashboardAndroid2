@@ -26,16 +26,16 @@
         </activity>
         <activity android:name=".DashboardActivity"/>
         <activity android:name=".MachinePlantActivity"/>
-        <activity android:name=".BreakdownHistoryActivity"/>
+        <activity android:name=".breakdownhistory.BreakdownHistoryActivity"/>
         <activity android:name=".HomeActivity"/>
-        <activity android:name=".WheelPohDetailsActivity"/>
+        <activity android:name=".wheelPohDetail.WheelPohDetailsActivity"/>
         <activity android:name=".BearingRejectionActivity"/>
         <activity android:name=".WheelTurningActivity"/>
         <activity android:name=".WheelAssemblyActivity"/>
         <activity android:name=".IncomingWheelsetActivity"/>
         <activity android:name=".LoginActivity"/>
         <activity android:name=".SignupActivity"/>
-        <activity android:name=".AxleRejectionActivity"/>
+        <activity android:name=".axleRejection.AxleRejectionActivity"/>
     </application>
 
 </manifest>

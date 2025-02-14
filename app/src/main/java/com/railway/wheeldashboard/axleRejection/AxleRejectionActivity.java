@@ -1,8 +1,7 @@
-package com.railway.wheeldashboard;
+package com.railway.wheeldashboard.axleRejection;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -13,10 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
-import com.railway.wheeldashboard.axleRejection.ApiService;
-import com.railway.wheeldashboard.axleRejection.AxleRejectionModel;
-import com.railway.wheeldashboard.axleRejection.TableAdapter;
-import com.railway.wheeldashboard.axleRejection.TableResponse;
+import com.railway.wheeldashboard.R;
 import com.railway.wheeldashboard.client.RetrofitClientInstance;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +23,8 @@ import retrofit2.Response;
 
 public class AxleRejectionActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private TableAdapter adapter;
-private TextView totalPagesTextView;
+    private AxleRejectionAdapter adapter;
+    private TextView totalPagesTextView;
     private int currentPage = 0;
     private String search="";
     private int totalPages = 1;
@@ -49,7 +45,7 @@ private TextView totalPagesTextView;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        adapter = new TableAdapter(new ArrayList<>());
+        adapter = new AxleRejectionAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
 
         loadData(currentPage,search);
@@ -81,12 +77,12 @@ private TextView totalPagesTextView;
     }
 
     private void loadData(int page,String search) {
-        ApiService apiService = RetrofitClientInstance.getRetrofitInstance().create(ApiService.class);
-        apiService.getTableData(page, 10,search).enqueue(new Callback<TableResponse>() {
+        AxleRejectionService apiService = RetrofitClientInstance.getRetrofitInstance().create(AxleRejectionService.class);
+        apiService.getTableData(page, 10,search).enqueue(new Callback<AxleRejectionResponse>() {
           @Override
-            public void onResponse(@NonNull Call<TableResponse> call, @NonNull Response<TableResponse> response) {
+            public void onResponse(@NonNull Call<AxleRejectionResponse> call, @NonNull Response<AxleRejectionResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    TableResponse tableResponse = response.body();
+                    AxleRejectionResponse tableResponse = response.body();
                     List<AxleRejectionModel> items = tableResponse.getContent();
                     totalPagesTextView.setText(new StringBuilder().append("Total Pages ").append(tableResponse.getTotalPages() != 0 ? String.valueOf(tableResponse.getTotalPages()) : "1").toString());
                     totalPages = tableResponse.getTotalPages();
@@ -106,7 +102,7 @@ private TextView totalPagesTextView;
             }
 
             @Override
-            public void onFailure(@NonNull Call<TableResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<AxleRejectionResponse> call, @NonNull Throwable t) {
                  Log.d("error at the time call API","Error at the time api call",t);
                 Toast.makeText(AxleRejectionActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
             }

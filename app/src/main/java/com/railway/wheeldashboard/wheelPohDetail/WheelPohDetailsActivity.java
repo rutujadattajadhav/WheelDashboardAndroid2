@@ -1,13 +1,9 @@
-package com.railway.wheeldashboard;
+package com.railway.wheeldashboard.wheelPohDetail;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.widget.Button;
 import android.widget.SearchView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,12 +19,8 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.gson.Gson;
 
+import com.railway.wheeldashboard.R;
 import com.railway.wheeldashboard.client.RetrofitClientInstance;
-import com.railway.wheeldashboard.login.LoginService;
-import com.railway.wheeldashboard.wheelPohDetail.TableAdapter;
-import com.railway.wheeldashboard.wheelPohDetail.TableResponse;
-import com.railway.wheeldashboard.wheelPohDetail.WheelPoh;
-import com.railway.wheeldashboard.wheelPohDetail.WheelPohApiService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +31,7 @@ import retrofit2.Response;
 
 public class WheelPohDetailsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private TableAdapter adapter;
+    private WheelPohAdapter adapter;
     private TextView totalPagesTextView;
     private int currentPage = 0;
     private String search="";
@@ -61,7 +53,7 @@ public class WheelPohDetailsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        adapter = new TableAdapter(new ArrayList<>());
+        adapter = new WheelPohAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
 
         loadData(currentPage,search);
@@ -184,12 +176,12 @@ public class WheelPohDetailsActivity extends AppCompatActivity {
 
     private void loadData(int page,String search) {
         WheelPohApiService apiService = RetrofitClientInstance.getRetrofitInstance().create(WheelPohApiService.class);
-        apiService.getTableData(page, 10,search).enqueue(new Callback<TableResponse>() {
+        apiService.getTableData(page, 10,search).enqueue(new Callback<WheelPohResponse>() {
             @Override
-            public void onResponse(@NonNull Call<TableResponse> call, @NonNull Response<TableResponse> response) {
+            public void onResponse(@NonNull Call<WheelPohResponse> call, @NonNull Response<WheelPohResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    TableResponse tableResponse = response.body();
-                    List<WheelPoh> items = tableResponse.getContent();
+                    WheelPohResponse tableResponse = response.body();
+                    List<WheelPohModel> items = tableResponse.getContent();
                     totalPagesTextView.setText(new StringBuilder().append("Total Pages ").append(tableResponse.getTotalPages() != 0 ? String.valueOf(tableResponse.getTotalPages()) : "1").toString());
                     totalPages = tableResponse.getTotalPages();
 
@@ -208,7 +200,7 @@ public class WheelPohDetailsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(@NonNull Call<TableResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<WheelPohResponse> call, @NonNull Throwable t) {
                 Log.d("error at the time call API","Error at the time api call",t);
                 Toast.makeText(WheelPohDetailsActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
             }

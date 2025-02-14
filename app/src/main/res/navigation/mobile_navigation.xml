@@ -19,7 +19,7 @@
 
     <activity
         android:id="@+id/wheelpohdetails"
-        android:name="com.railway.wheeldashboard.WheelPohDetailsActivity"
+        android:name="com.railway.wheeldashboard.wheelPohDetail.WheelPohDetailsActivity"
         android:label="@string/wheel_poh_details"
         tools:layout="@layout/activity_wheel_poh"/>
 
@@ -55,7 +55,7 @@
 
     <activity
         android:id="@+id/breakdownhistory"
-        android:name="com.railway.wheeldashboard.BreakdownHistoryActivity"
+        android:name="com.railway.wheeldashboard.breakdownhistory.BreakdownHistoryActivity"
         android:label="@string/breakdown_history"
         tools:layout="@layout/activity_breakdown_history"/>
 
@@ -74,7 +74,7 @@
 
     <activity
         android:id="@+id/axlerejection"
-        android:name="com.railway.wheeldashboard.AxleRejectionActivity"
+        android:name="com.railway.wheeldashboard.axleRejection.AxleRejectionActivity"
         android:label="@string/axle_rejection"
         tools:layout="@layout/activity_table"/>
 

@@ -8,22 +8,22 @@ import java.util.List;
 public interface WheelPohApiService {
 
     @GET("wheelinspection/api/wheel-poh")
-    Call<List<WheelPoh>> getAllWheelPohDetails();
+    Call<List<WheelPohModel>> getAllWheelPohDetails();
 
     @GET("api/wheel-poh-details/{id}")
-    Call<WheelPoh> getWheelPohDetailById(@Path("id") Long id);
+    Call<WheelPohModel> getWheelPohDetailById(@Path("id") Long id);
 
     @POST("api/wheel-poh-details")
-    Call<WheelPoh> createWheelPohDetail(@Body WheelPoh wheelPoh);
+    Call<WheelPohModel> createWheelPohDetail(@Body WheelPohModel wheelPoh);
 
     @PUT("api/wheel-poh-details/{id}")
-    Call<WheelPoh> updateWheelPohDetail(@Path("id") Long id, @Body WheelPoh wheelPoh);
+    Call<WheelPohModel> updateWheelPohDetail(@Path("id") Long id, @Body WheelPohModel wheelPoh);
 
     @DELETE("api/wheel-poh-details/{id}")
     Call<Void> deleteWheelPohDetail(@Path("id") Long id);
 
     @GET("wheelinspection/api/wheel-poh")
-    Call<TableResponse> getTableData(@Query("page") int page,
-                                @Query("size") int size,
-                                @Query("search") String search);
+    Call<WheelPohResponse> getTableData(@Query("page") int page,
+                                        @Query("size") int size,
+                                        @Query("search") String search);
 }

@@ -1,11 +1,14 @@
-package com.railway.wheeldashboard.axleRejection;
+package com.railway.wheeldashboard.wheelPohDetail;
 
+
+import com.railway.wheeldashboard.common.PageableModel;
+import com.railway.wheeldashboard.common.SortModel;
 
 import java.util.List;
 
-public class TableResponse {
+public class WheelPohResponse {
 
-        private List<AxleRejectionModel> content;  // List of axle rejection records
+        private List<WheelPohModel> content;  // List of axle rejection records
         private PageableModel pageable;
         private boolean last;
         private int totalPages;
@@ -17,11 +20,11 @@ public class TableResponse {
         private int numberOfElements;
         private boolean empty;
 
-        public List<AxleRejectionModel> getContent() {
+        public List<WheelPohModel> getContent() {
             return content;
         }
 
-        public void setContent(List<AxleRejectionModel> content) {
+        public void setContent(List<WheelPohModel> content) {
             this.content = content;
         }
 

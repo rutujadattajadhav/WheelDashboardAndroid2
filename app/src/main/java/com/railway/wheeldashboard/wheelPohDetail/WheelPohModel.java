@@ -2,7 +2,7 @@ package com.railway.wheeldashboard.wheelPohDetail;
 
 import com.google.gson.annotations.SerializedName;
 
-public class WheelPoh {
+public class WheelPohModel {
     private Long id;
 
     @SerializedName("date")

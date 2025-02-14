@@ -1,7 +1,7 @@
 package com.railway.wheeldashboard.breakdownhistory;
 
 public class BreakdownHistory {
-    public BreakdownHistory(int serialNumber, int id, String plantName, String issue, Integer noOfDays, String fromDate, String toDate) {
+    public BreakdownHistory(Long serialNumber, Long id, String plantName, String issue, Integer noOfDays, String fromDate, String toDate) {
         this.serialNumber = serialNumber;
         this.id = id;
         this.plantName = plantName;
@@ -11,27 +11,27 @@ public class BreakdownHistory {
         this.toDate = toDate;
     }
 
-    private int serialNumber;
-    private int id;
+    private Long serialNumber;
+    private Long id;
     private String plantName;
     private String issue;
     private Integer noOfDays;
     private String fromDate;
     private String toDate;
 
-    public int getSerialNumber() {
+    public Long getSerialNumber() {
         return serialNumber;
     }
 
-    public void setSerialNumber(int serialNumber) {
+    public void setSerialNumber(Long serialNumber) {
         this.serialNumber = serialNumber;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

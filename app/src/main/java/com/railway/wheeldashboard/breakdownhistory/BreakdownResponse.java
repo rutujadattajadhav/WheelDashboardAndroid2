@@ -1,35 +1,34 @@
-package com.railway.wheeldashboard.wheelPohDetail;
+package com.railway.wheeldashboard.breakdownhistory;
 
 
-import com.railway.wheeldashboard.axleRejection.AxleRejectionModel;
-import com.railway.wheeldashboard.axleRejection.PageableModel;
-import com.railway.wheeldashboard.axleRejection.SortModel;
+import com.railway.wheeldashboard.common.PageableModel;
+import com.railway.wheeldashboard.common.SortModel;
 
 import java.util.List;
 
-public class TableResponse {
+public class BreakdownResponse {
 
-        private List<WheelPoh> content;  // List of axle rejection records
-        private com.railway.wheeldashboard.axleRejection.PageableModel pageable;
+        private List<BreakdownHistory> content;  // List of axle rejection records
+        private PageableModel pageable;
         private boolean last;
         private int totalPages;
         private long totalElements;
         private int size;
         private int number;
-        private com.railway.wheeldashboard.axleRejection.SortModel sort;
+        private SortModel sort;
         private boolean first;
         private int numberOfElements;
         private boolean empty;
 
-        public List<WheelPoh> getContent() {
+        public List<BreakdownHistory> getContent() {
             return content;
         }
 
-        public void setContent(List<WheelPoh> content) {
+        public void setContent(List<BreakdownHistory> content) {
             this.content = content;
         }
 
-        public com.railway.wheeldashboard.axleRejection.PageableModel getPageable() {
+        public PageableModel getPageable() {
             return pageable;
         }
 
@@ -77,7 +76,7 @@ public class TableResponse {
             this.number = number;
         }
 
-        public com.railway.wheeldashboard.axleRejection.SortModel getSort() {
+        public SortModel getSort() {
             return sort;
         }
 

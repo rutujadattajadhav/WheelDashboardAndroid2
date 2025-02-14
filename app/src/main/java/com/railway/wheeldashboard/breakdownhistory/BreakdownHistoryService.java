@@ -5,7 +5,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.*;
 
-public interface BreakdownHistoryApi {
+public interface BreakdownHistoryService {
 
     @GET("wheelinspection/api/breakdown")
     Call<List<BreakdownHistory>> getAllHistory();
@@ -22,5 +22,7 @@ public interface BreakdownHistoryApi {
     @DELETE("wheelinspection/api/breakdown/{id}")
     Call<Void> deleteHistory(@Path("id") int id);
     @GET("wheelinspection/api/breakdown")
-    Call<BreakdownHistoryResponse> getBreakdowns(@Query("search") String search, @Query("page") int page, @Query("size") int size);
+    Call<BreakdownResponse> getTableData(@Query("page") int page,
+                                          @Query("size") int size,
+                                          @Query("search") String search) ;
 }
